@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "ViewController.h"
 
 @interface AppDelegate ()
 
@@ -17,6 +18,8 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    
+    [self initUI];
     return YES;
 }
 
@@ -46,6 +49,26 @@
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
+
+
+/**
+ *  初始化界面
+ */
+-(void)initUI {
+    
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    self.window.backgroundColor = [UIColor whiteColor];
+    ViewController *Controller = [[ViewController alloc] init];
+    UINavigationController *navC = [[UINavigationController alloc] initWithRootViewController:Controller];
+    navC.navigationBar.titleTextAttributes = @{NSFontAttributeName : [UIFont systemFontOfSize:18], NSForegroundColorAttributeName : [UIColor whiteColor]};
+    CGFloat red = (CGFloat)((0x2CBCFF & 0xFF0000) >> 16) / 255.0;
+    CGFloat green = (CGFloat)((0x2CBCFF & 0xFF00) >> 8) /255.0;
+    CGFloat blue = (CGFloat)(0x2CBCFF & 0xFF) / 255.0;
+    navC.navigationBar.barTintColor = [UIColor colorWithRed:red green:green blue:blue alpha:1];
+    self.window.rootViewController = navC;
+    [self.window makeKeyAndVisible];
+}
+
 
 
 @end
